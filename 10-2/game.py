@@ -1,7 +1,8 @@
 from hangman import Hangman
 from guess import Guess
 from word import Word
-
+global alphabet
+alphabet='abcdefghijklmnopqrstuvwxyz'
 
 def gameMain():
     #랜덤으로 단어 선택
@@ -27,12 +28,17 @@ def gameMain():
             print('You already guessed \"' + guessedChar + '\"')
             continue
 
+        if guessedChar not in alphabet:
+            print('Character must be English small letter!')
+            continue
+
         finished = guess.guess(guessedChar)
         if finished == True:
             break
 
     if finished == True:
         print('Success')
+        print('The answer is '+guess.secretWord)
     else:
         print(hangman.get(0))
         print('word [' + guess.secretWord + ']')
